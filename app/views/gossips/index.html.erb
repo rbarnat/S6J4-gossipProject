@@ -1,0 +1,38 @@
+<h1>Bienvenue !</h1>
+<br>
+<% if @gossip != nil && @gossip.errors.none? %>
+  <div class="alert alert-success" role="alert">
+    <p>Le potin a bien été créé.</p>
+  </div>
+<% end %>
+
+
+<br>
+<p>Ici c'est notre super site de potins, il est chouette, non ?</p>
+
+
+
+
+<br><br>
+
+<%= link_to "Créer un potin", new_gossip_path %>
+
+<br><br>
+
+<div class="row">
+
+<% @gossips.each do |gossip| %>
+  <div class="col-sm-6 card-deck">
+      <div class="card border-info mb-3" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= gossip.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= link_to gossip.user.first_name, gossips_path %></h6>
+          <p class="card-text"></p>
+          <p class="card-link"><%= link_to "En savoir plus sur ce potin...", gossip_path(gossip.id) %><br/><br/></p>
+        </div>
+      </div>
+      </div>
+<% end %>
+
+
+</div>

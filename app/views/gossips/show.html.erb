@@ -1,0 +1,8 @@
+<h1>Affichage du potin n°<%= @id %> : <%= @gossip.title %></h1>
+<p>
+  N° : <%= @id %><br/>
+  Prénom: <%= @gossip.user.first_name %><br/>
+  Titre : <%= @gossip.title %><br/>
+  Potin : <%= @gossip.content %><br/>
+  Date  : <%= @gossip.created_at %><br/>
+</p>
