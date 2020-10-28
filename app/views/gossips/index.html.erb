@@ -1,38 +1,77 @@
-<h1>Bienvenue !</h1>
-<br>
+<section class="jumbotron text-center" style="background: url(https://images.pexels.com/photos/3764395/pexels-photo-3764395.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat center center;background-size: cover; padding: 10%">
+  <div class="container">
+    <h1 class="jumbotron-heading text-white font-weight-bold">THE GOSSIP PROJECT</h1>
+  </div>
+</section>
+
 <% if @gossip != nil && @gossip.errors.none? %>
+  <br>
   <div class="alert alert-success" role="alert">
     <p>Le potin a bien été créé.</p>
   </div>
+  <br>
 <% end %>
 
+   
+<!-- RESUME -->
+<h4 class="text-center">Tu aimes les potins ? Hmm tu vas être servi !</h4>
+<div class="card-deck mx-4 my-4">
+  <div class="card">
+    <div class="card-body text-center">
+      <h1 class="card-title text-center"><i class="fas fa-eye"></i></h1>
+      <p class="card-text">Voir notre sélection des pottins les plus croustillants et briller en société !</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body text-center">
+    <h1 class="card-title text-center"><i class="fas fa-plus-circle"></i></h1>
+      <p class="card-text">Créer en exclusivité de nouveaux pottins, pour toujours plus de comérage !</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body text-center">
+    <h1 class="card-title text-center"><i class="fas fa-pen-square"></i></h1>
+      <p class="card-text">Modifier les potins pour lancer de nouvelles rumeurs, il parait que tu en sais plus que moi...</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body text-center">
+    <h1 class="card-title text-center"><i class="fas fa-trash-alt"></i></h1>
+      <p class="card-text">Supprimer ceux qui ne sont plus d'actualité : Pfff So 2019 !</p>
+    </div>
+  </div>
+</div>
 
+
+<div class="text-center">
+  <a href="<%= new_gossip_path %>" class="btn my-2 btn-outline-secondary">Créer un potin</a>
+</div>
 <br>
-<p>Ici c'est notre super site de potins, il est chouette, non ?</p>
 
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
 
-
-
-<br><br>
-
-<%= link_to "Créer un potin", new_gossip_path %>
-
-<br><br>
-
-<div class="row">
-
-<% @gossips.each do |gossip| %>
-  <div class="col-sm-6 card-deck">
-      <div class="card border-info mb-3" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><%= gossip.title %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= link_to gossip.user.first_name, gossips_path %></h6>
-          <p class="card-text"></p>
-          <p class="card-link"><%= link_to "En savoir plus sur ce potin...", gossip_path(gossip.id) %><br/><br/></p>
+      <% @gossips.each do |gossip| %>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
+            <div class="card-body">
+              <h5 class="card-title"><%= gossip.title %></h5>
+              <p class="card-text"><%= gossip.content %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="<%= gossip_path(gossip.id) %>" class="btn btn-sm btn-outline-secondary">Voir</a>
+                  <a href="<%= edit_gossip_path(gossip.id) %>" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                </div>
+                <a href="<%= gossip_path(gossip.id) %>"><small  class="text-muted"><%= gossip.user.first_name + ' ' + gossip.user.last_name %></small></a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-<% end %>
-
-
+      <% end %>
+      
+      
+    </div>
+  </div>
 </div>

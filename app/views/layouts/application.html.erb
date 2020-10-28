@@ -5,36 +5,71 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Biblio d'Icones -->
+    <script src="https://kit.fontawesome.com/dc9a3c0907.js" crossorigin="anonymous"></script>
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <!-- HEADER-->
     <header>
       <!-- BARRE DE NAVIGATION -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to "The Gossip Project !", gossips_path %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <p class="navbar-brand">
+          <a class="navbar-brand" href="<%= gossips_path %>">The Gossip Project</a>
+        </p>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-            <%= link_to "Acceuil", gossips_path %>
-            </li>
-            <li class="nav-item active">
-              <%= link_to "La Team", gossips_path %>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <p class="nav-link">
+                <a class="nav-link" href="<%= gossips_path %>">Accueil <span class="sr-only">(current)</span></a>
+              </p>
             </li>
             <li class="nav-item">
-              <%= link_to "Contact", gossips_path %>
+              <p class="nav-link">
+                <a class="nav-link" href="<%= gossips_path %>">Potins</a>
+              </p>
+            </li>
+            <li class="nav-item">
+              <p class="nav-link">
+                <a class="nav-link" href="<%= gossips_path %>">Utilisateurs</a>
+              </p>
+            </li>
+            <li class="nav-item">
+              <p class="nav-link">
+                <a class="nav-link" href="<%= gossips_path %>">Villes</a>
+              </p>
             </li>
           </ul>
+          <form class="form-inline my-2 my-md-0">
+            <input class="form-control" type="text" placeholder="Search">
+          </form>
         </div>
       </nav>
     </header>
 
+
+    <!-- PARTIE CENTRALE-->
     <%= yield %>
+
+
+    <!-- FOOTER-->
+    <footer class="text-muted">
+      <div class="container">
+        <br>
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>&copy; The Gossip Project, marque déposé chez ta mère !</p>
+        <p>Concu par Rémi BARNAT</p>
+      </div>
+    </footer>
   </body>
 </html>

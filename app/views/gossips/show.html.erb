@@ -1,8 +1,25 @@
-<h1>Affichage du potin n°<%= @id %> : <%= @gossip.title %></h1>
-<p>
-  N° : <%= @id %><br/>
-  Prénom: <%= @gossip.user.first_name %><br/>
-  Titre : <%= @gossip.title %><br/>
-  Potin : <%= @gossip.content %><br/>
-  Date  : <%= @gossip.created_at %><br/>
-</p>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
+          <div class="card-body">
+            <small class="text-muted">#<%= @id %></small>
+            <h5 class="card-title"><%= @gossip.title %></h5>
+            <p class="card-text"><%= @gossip.content %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="<%= gossip_path(@gossip.id) %>"><small  class="text">🏠<%= @gossip.user.city.name %></small></a>
+              <a href="<%= gossip_path(@gossip.id) %>"><small  class="text-muted">🙃<%= @gossip.user.first_name + ' ' + @gossip.user.last_name %></small></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+
