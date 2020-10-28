@@ -3,23 +3,37 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-md-4">
+      <div class="col-md-8">
         <div class="card mb-4 box-shadow">
           <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
           <div class="card-body">
-            <small class="text-muted">#<%= @id %></small>
-            <h5 class="card-title"><%= @gossip.title %></h5>
+            <small class="text-muted">#<%= @gossip.id %></small>
+            <h3 class="card-title"><%= @gossip.title %></h5>
             <p class="card-text"><%= @gossip.content %></p>
             <div class="d-flex justify-content-between align-items-center">
-              <a href="<%= gossip_path(@gossip.id) %>"><small  class="text">🏠<%= @gossip.user.city.name %></small></a>
-              <a href="<%= gossip_path(@gossip.id) %>"><small  class="text-muted">🙃<%= @gossip.user.first_name + ' ' + @gossip.user.last_name %></small></a>
+              <div class="btn-group">
+                <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-sm btn-danger" data-confirm="êtes-vous sur?" data-method="DELETE">Supprimer</a>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="<%= city_path(@gossip.user.city.id) %>"><small  class="text">🏠<%= @gossip.user.city.name %></small></a>
+              <a href="<%= user_path(@gossip.user.id) %>"><small  class="text-muted">🙃<%= @gossip.user.first_name + ' ' + @gossip.user.last_name %></small></a>
             </div>
           </div>
         </div>
       </div>
-      
 
     </div>
+
+    <div class="text-left">
+      <a href="<%= gossips_path %>" class="btn my-2 btn-outline-secondary">Retour aux potins</a>
+    </div>
+
   </div>
+
+
 </div>
+
+
 

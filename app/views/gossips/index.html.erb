@@ -4,7 +4,7 @@
   </div>
 </section>
 
-<% if @gossip != nil && @gossip.errors.none? %>
+<% if @gossip != nil  %>
   <br>
   <div class="alert alert-success" role="alert">
     <p>Le potin a bien été créé.</p>
@@ -64,7 +64,10 @@
                   <a href="<%= gossip_path(gossip.id) %>" class="btn btn-sm btn-outline-secondary">Voir</a>
                   <a href="<%= edit_gossip_path(gossip.id) %>" class="btn btn-sm btn-outline-secondary">Modifier</a>
                 </div>
-                <a href="<%= gossip_path(gossip.id) %>"><small  class="text-muted"><%= gossip.user.first_name + ' ' + gossip.user.last_name %></small></a>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="<%= city_path(gossip.user.city.id) %>"><small  class="text">🏠<%= gossip.user.city.name %></small></a>
+                <a href="<%= user_path(gossip.user.id) %>"><small  class="text-muted">🙃<%= gossip.user.first_name + ' ' + gossip.user.last_name %></small></a>
               </div>
             </div>
           </div>
