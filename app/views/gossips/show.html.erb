@@ -23,8 +23,10 @@
             <p class="card-text"><%= @gossip.content %></p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-sm btn-outline-secondary">Modifier</a>
-                <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-sm btn-danger" data-confirm="Etes-vous sur de vouloir supprimer le potin ?" data-method="DELETE">Supprimer</a>
+                <% if logged_in? && current_user.id == @gossip.user.id %>
+                  <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                  <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-sm btn-danger" data-confirm="Etes-vous sur de vouloir supprimer le potin ?" data-method="DELETE">Supprimer</a>
+                <% end %>
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center">
@@ -42,14 +44,14 @@
           Commentaires
         </h4>
         <div class="card mb-2">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                <%= form_tag new_gossip_gossip_comment_path(@gossip.id) do %> <!-- post_gossip_comment_path(@gossip.id) -->
-                  <%= text_field_tag 'content' %><%= submit_tag "+" %>
-                <% end %>
-              </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <%= form_tag new_gossip_gossip_comment_path(@gossip.id) do %> <!-- post_gossip_comment_path(@gossip.id) -->
+                <%= text_field_tag 'content' %><%= submit_tag "+" %>
+              <% end %>
             </div>
           </div>
+        </div>
         <% @gossip.gossip_comments.each do |gossip_comment| %>
           <div class="card mb-2">
             <div class="card-body">
@@ -57,8 +59,10 @@
                 <medium ><%= gossip_comment.content %></medium>
                 <a href="<%= user_path(gossip_comment.user.id) %>"><small  class="text-muted">🙃<%= gossip_comment.user.first_name + ' ' + gossip_comment.user.last_name %></small></a>
                 <div class="btn-group sm">
-                  <a href="<%= edit_gossip_gossip_comment_path(@gossip.id, gossip_comment.id) %>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-pen-square"></i></a>
-                  <a href="<%= gossip_gossip_comment_path(@gossip.id, gossip_comment.id) %>" class="btn btn-sm btn-danger" data-confirm="Etes-vous sur de vouloir supprimer le commentaire ?" data-method="DELETE"><i class="fas fa-trash-alt"></i></a>
+                  <% if logged_in? && current_user.id == gossip_comment.user.id %>
+                    <a href="<%= edit_gossip_gossip_comment_path(@gossip.id, gossip_comment.id) %>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-pen-square"></i></a>
+                    <a href="<%= gossip_gossip_comment_path(@gossip.id, gossip_comment.id) %>" class="btn btn-sm btn-danger" data-confirm="Etes-vous sur de vouloir supprimer le commentaire ?" data-method="DELETE"><i class="fas fa-trash-alt"></i></a>
+                  <% end %>
                 </div>
               </div>
             </div>
