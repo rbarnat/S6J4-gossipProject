@@ -1,2 +1,63 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% if @user.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p>Nous n'avons pas réussi à créer le profil pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="card mb-4 box-shadow align-items-center">
+          <br><br>
+          <%= form_tag url_for(action: 'create'), method: "post" do %>
+            <%= label_tag 'Email : ' %>
+            <%= text_field_tag 'email', @user.email %>
+            <br />
+            <%= label_tag 'Mot de passe : ' %>
+            <%= text_field_tag 'password' %>
+            <br />
+            <%= label_tag 'Confirmation (Mdp) : ' %>
+            <%= text_field_tag 'password_confirmation' %>
+            <br />
+            <%= label_tag 'Nom : ' %>
+            <%= text_field_tag 'first_name', @user.first_name %>
+            <br />
+            <%= label_tag 'Prénom : ' %>
+            <%= text_field_tag 'last_name', @user.last_name %>
+            <br />
+            <%= label_tag 'Descrition : ' %>
+            <%= text_area_tag 'description', @user.description %>
+            <br />
+            <%= label_tag 'Age : ' %>
+            <%= text_field_tag 'age', @user.age %>
+            <br />
+            <%= label_tag 'Ville : ' %>
+            <%= text_field_tag 'city', @user.city.name %>
+            <br />
+
+            <%= submit_tag "Créer ton profil" %>
+        
+          <% end %>
+          <br><br>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-left">
+      <a href="<%= gossips_path %>" class="btn my-2 btn-outline-secondary">Retour aux potins</a>
+    </div>
+
+  </div>
+
+
+</div>

@@ -49,7 +49,28 @@
             </li>
           </ul>
           <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search">
+            <ul class="navbar-nav mr-auto">
+              <% if logged_in? %>
+                <li class="nav-item">
+                  <p class="nav-link">
+                    <a class="nav-link btn-danger" href="<%= sessions_destroy_path %>" data-confirm="Etes-vous sur de vouloir vous déconnecter ?">Déconnexion<span class="sr-only">(current)</span></a>
+                  </p>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <p class="nav-link">
+                    <a class="nav-link" href="<%= sessions_new_path %>">Connexion<span class="sr-only">(current)</span></a>
+                  </p>
+                </li>
+                <li class="nav-item">
+                  <p class="nav-link">
+                    <a class="nav-link" href="<%= new_user_path %>">S'enregistrer</a>
+                  </p>
+                </li>
+              <% end %>
+              
+            </ul>
+            <!--<input class="form-control" type="text" placeholder="Search">-->
           </form>
         </div>
       </nav>

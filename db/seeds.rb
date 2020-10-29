@@ -25,6 +25,7 @@ City.destroy_all
     zip_code: Faker::Address.zip_code
     )
 end
+puts "Cities créées : #{City.count}/10."
 
 #Users
 10.times do |index|
@@ -34,9 +35,11 @@ end
     description: Faker::Quote.yoda,
     email: Faker::Internet.email,
     age: rand(18..100),
-    city_id: City.ids.sample
+    city_id: City.ids.sample,
+    password: Faker::Movies::Hobbit.character #Faker::Internet.password
     )
 end
+puts "Users créés : #{User.count}/10."
 
 #Gossips
 20.times do |index|
@@ -47,6 +50,7 @@ end
     city_id: City.ids.sample
     )
 end
+puts "Gossips créés : #{Gossip.count}/20."
 
 #Tags
 10.times do |index|
@@ -54,6 +58,7 @@ end
     title: Faker::Ancient.primordial,
     )
 end
+puts "Tags créés : #{Tag.count}/10."
 
 #TagGossips
 Gossip.all.each do |g|
@@ -64,6 +69,7 @@ Gossip.all.each do |g|
     )
   end
 end
+puts "TagGossips créés : #{TagGossip.count}."
 
 #GossipComments
 Gossip.all.each do |g|
@@ -75,6 +81,7 @@ Gossip.all.each do |g|
     )
   end
 end
+puts "GossipComments créés : #{GossipComment.count}."
 
 #GossipLikes
 Gossip.all.each do |g|
@@ -85,6 +92,7 @@ Gossip.all.each do |g|
     )
   end
 end
+puts "GossipLikes créés : #{GossipLike.count}."
 
 #Private Messages
 20.times do |index|
@@ -93,6 +101,8 @@ end
     user_id: User.ids.sample
     )
 end
+puts "PrivateMessages créés : #{PrivateMessage.count}."
+
 
 #Private Message receivers
 PrivateMessage.all.each do |p|
@@ -103,3 +113,4 @@ PrivateMessage.all.each do |p|
     )
   end
 end
+puts "PmReceiver créés : #{PmReceiver.count}."

@@ -1,0 +1,32 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="card mb-4 box-shadow align-items-center">
+          <br><br>
+          <%= form_tag url_for(action: 'create'), method: "post" do %>
+            <%= label_tag 'Email : ' %>
+            <%= text_field_tag 'email' %>
+            <br />
+            <%= label_tag 'Mot de passe : ' %>
+            <%= text_field_tag 'password' %>
+            <br />
+
+            <%= submit_tag "Se connecter" %>
+        
+          <% end %>
+          <br><br>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-left">
+      <a href="<%= gossips_path %>" class="btn my-2 btn-outline-secondary">Retour aux potins</a>
+    </div>
+
+  </div>
+
+
+</div>

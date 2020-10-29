@@ -11,19 +11,33 @@ class UsersController < ApplicationController
 
   def new
     # Méthode qui crée un potin vide et l'envoie à une view qui affiche le formulaire pour 'le remplir' (new.html.erb)
-    @user = User.new
+    @user = User.new( first_name: "",
+                      last_name: "",
+                      description: "",
+                      email: "",
+                      age: "",
+                      password: "",
+                      password_confirmation: "",
+                      city_id: City.ids.sample)
   end
 
   def create
     # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
     # pour info, le contenu de ce formulaire sera accessible dans le hash params (ton meilleur pote)
     # Une fois la création faite, on redirige généralement vers la méthode show (pour afficher le potin créé)
-    @user = User.new(first_name: params[:first_name], last_name: params[:last_name], description: params[:description], email: params[:email], age: params[:age],city_id: City.ids.sample)
+    @user = User.new( first_name: params[:first_name],
+                      last_name: params[:last_name],
+                      description: params[:description],
+                      email: params[:email],
+                      age: params[:age],
+                      password: params[:password],
+                      password_confirmation: params[:password_confirmation],
+                      city_id: City.ids.sample)
 
     if @user.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
       flash[:success] = 'Le user a bien été créé.'
-      redirect_to users_path
+      redirect_to root_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
       render :new
