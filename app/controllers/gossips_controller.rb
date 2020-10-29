@@ -1,4 +1,5 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:show, :new, :create, :edit, :update, :destroy]
 
   def index
     # Méthode qui récupère tous les potins et les envoie à la view index (index.html.erb) pour affichage
@@ -20,7 +21,7 @@ class GossipsController < ApplicationController
     # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
     # pour info, le contenu de ce formulaire sera accessible dans le hash params (ton meilleur pote)
     # Une fois la création faite, on redirige généralement vers la méthode show (pour afficher le potin créé)
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: User.ids.sample, city_id: City.ids.sample)
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: current_user.id, city_id: City.ids.sample)
 
     if @gossip.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
@@ -44,7 +45,7 @@ class GossipsController < ApplicationController
     # Une fois la modification faite, on redirige généralement vers la méthode show (pour afficher le potin modifié)
     @gossip = Gossip.find(params[:id])
 
-    if @gossip.update(title: params[:title], content: params[:content], user_id: @gossip.user_id, city_id: @gossip.city_id) # essaie de sauvegarder en base @gossip
+    if @gossip.update(title: params[:title], content: params[:content], user_id: current_user.id, city_id: @gossip.city_id) # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
       flash[:success] = "Le potin a bien été mis à jour."
       redirect_to gossips_path

@@ -19,4 +19,11 @@ module SessionsHelper
       bool = false
     end
   end
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Pour effectuer cette action, veuillez vous connecter."
+      redirect_to new_session_path
+    end
+  end
 end

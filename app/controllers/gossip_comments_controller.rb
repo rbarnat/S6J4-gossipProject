@@ -1,4 +1,6 @@
 class GossipCommentsController < ApplicationController
+  before_action :authenticate_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  
   def index
     @gossip_comments = GossipComment.all
   end
@@ -12,7 +14,7 @@ class GossipCommentsController < ApplicationController
   end
 
   def create
-    @gossip_comment = GossipComment.new(content: params[:content], gossip_id: params[:gossip_id], user_id: User.ids.sample)
+    @gossip_comment = GossipComment.new(content: params[:content], gossip_id: params[:gossip_id], user_id: current_user.id)
   
     if @gossip_comment.save
       flash[:success] = "Le commentaire a bien été créé."

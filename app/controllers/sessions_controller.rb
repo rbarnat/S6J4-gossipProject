@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  # before_action :authenticate_user, only: [:index]
-
   def new
     @user = User.new
   end
@@ -25,13 +23,4 @@ class SessionsController < ApplicationController
     flash[:success] = "Vous êtes maintenant déconnecté."
     redirect_to root_path
   end
-
-  # private
-
-  # def authenticate_user
-  #   unless current_user
-  #     flash[:danger] = "Veuillez vous connecter."
-  #     redirect_to new_session_path
-  #   end
-  # end
 end
