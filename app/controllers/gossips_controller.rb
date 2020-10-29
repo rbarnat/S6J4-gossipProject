@@ -7,6 +7,7 @@ class GossipsController < ApplicationController
 
   def show
     # Méthode qui récupère le potin concerné et l'envoie à la view show (show.html.erb) pour affichage
+    @gossip_comment = GossipComment.new
     @gossip = Gossip.find(params[:id])
   end
 
@@ -25,7 +26,7 @@ class GossipsController < ApplicationController
       # si ça marche, il redirige vers la page d'index du site
       # flash[:success] = 'Le potin a bien été créé.'
       # redirect_to root_path
-      redirect_to root_path
+      redirect_to gossips_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
       render :new
@@ -46,7 +47,7 @@ class GossipsController < ApplicationController
     if @gossip.update(title: params[:title], content: params[:content], user_id: @gossip.user_id, city_id: @gossip.city_id) # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
       # flash[:success] = 'Le potin a bien été mis à jour.'
-      redirect_to root_path
+      redirect_to gossips_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
       render :edit

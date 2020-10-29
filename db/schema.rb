@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_164750) do
+ActiveRecord::Schema.define(version: 2020_10_29_061749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(version: 2020_10_26_164750) do
     t.string "zip_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "gossip_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "gossip_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gossip_id"], name: "index_gossip_comments_on_gossip_id"
+    t.index ["user_id"], name: "index_gossip_comments_on_user_id"
+  end
+
+  create_table "gossip_likes", force: :cascade do |t|
+    t.bigint "gossip_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gossip_id"], name: "index_gossip_likes_on_gossip_id"
+    t.index ["user_id"], name: "index_gossip_likes_on_user_id"
   end
 
   create_table "gossips", force: :cascade do |t|
@@ -77,6 +96,10 @@ ActiveRecord::Schema.define(version: 2020_10_26_164750) do
     t.index ["city_id"], name: "index_users_on_city_id"
   end
 
+  add_foreign_key "gossip_comments", "gossips"
+  add_foreign_key "gossip_comments", "users"
+  add_foreign_key "gossip_likes", "gossips"
+  add_foreign_key "gossip_likes", "users"
   add_foreign_key "gossips", "cities"
   add_foreign_key "gossips", "users"
   add_foreign_key "pm_receivers", "private_messages"

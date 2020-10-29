@@ -11,6 +11,8 @@ PmReceiver.destroy_all
 PrivateMessage.destroy_all
 TagGossip.destroy_all
 Tag.destroy_all
+GossipComment.destroy_all
+GossipLike.destroy_all
 Gossip.destroy_all
 Gossip.destroy_all
 User.destroy_all
@@ -53,11 +55,32 @@ end
     )
 end
 
-#Gossips
+#TagGossips
 Gossip.all.each do |g|
   rand(1..5).times do 
     TagGossip.create(
       tag_id: Tag.ids.sample,
+      gossip_id: g.id
+    )
+  end
+end
+
+#GossipComments
+Gossip.all.each do |g|
+  rand(1..3).times do 
+    GossipComment.create(
+      content: Faker::TvShows::GameOfThrones.quote,
+      gossip_id: g.id,
+      user_id: User.ids.sample
+    )
+  end
+end
+
+#GossipLikes
+Gossip.all.each do |g|
+  rand(0..5).times do 
+    GossipLike.create(
+      user_id: User.ids.sample,
       gossip_id: g.id
     )
   end
