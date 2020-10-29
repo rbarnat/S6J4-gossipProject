@@ -15,8 +15,10 @@ class GossipCommentsController < ApplicationController
     @gossip_comment = GossipComment.new(content: params[:content], gossip_id: params[:gossip_id], user_id: User.ids.sample)
   
     if @gossip_comment.save
+      flash[:success] = "Le commentaire a bien été créé."
       redirect_to gossip_path(params[:gossip_id])
     else
+      flash.now[:danger] = "Le commentaire n'a pas été créé."
       render gossip_path(params[:gossip_id])
     end
   end

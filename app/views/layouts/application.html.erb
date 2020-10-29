@@ -48,32 +48,42 @@
               </p>
             </li>
           </ul>
-          <form class="form-inline my-2 my-md-0">
+          <!--<form class="form-inline my-2 my-md-0">-->
+            
             <ul class="navbar-nav mr-auto">
               <% if logged_in? %>
                 <li class="nav-item">
                   <p class="nav-link">
-                    <a class="nav-link btn-danger" href="<%= sessions_destroy_path %>" data-confirm="Etes-vous sur de vouloir vous déconnecter ?">Déconnexion<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<%= session_path(session[:user_id]) %>" data-confirm="Etes-vous sur de vouloir vous déconnecter ?" data-method="DELETE">Déconnexion<span class="sr-only">(current)</span></a>
                   </p>
                 </li>
               <% else %>
-                <li class="nav-item">
-                  <p class="nav-link">
-                    <a class="nav-link" href="<%= sessions_new_path %>">Connexion<span class="sr-only">(current)</span></a>
-                  </p>
-                </li>
-                <li class="nav-item">
-                  <p class="nav-link">
-                    <a class="nav-link" href="<%= new_user_path %>">S'enregistrer</a>
-                  </p>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    S'inscrire / Se connecter
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a href="<%= new_user_path %>" class="dropdown-item" href="#">S'inscrire</a>
+                    <a href="<%= new_session_path %>" class="dropdown-item" href="#">Se connecter</a>
+                  </div>
+                </div>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">S'inscrire / Se connecter</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                    <a href="<%= new_user_path %>" class="dropdown-item" href="#">S'inscrire</a>
+                    <a href="<%= new_session_path %>" class="dropdown-item" href="#">Se connecter</a>
+                  </div>
                 </li>
               <% end %>
               
             </ul>
             <!--<input class="form-control" type="text" placeholder="Search">-->
-          </form>
+          <!--</form>-->
         </div>
       </nav>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
     </header>
 
 

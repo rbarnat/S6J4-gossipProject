@@ -24,11 +24,11 @@ class GossipsController < ApplicationController
 
     if @gossip.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
-      # flash[:success] = 'Le potin a bien été créé.'
-      # redirect_to root_path
+      flash[:success] = "Le potin a bien été créé."
       redirect_to gossips_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
+      flash.now[:danger] = "Le potin n'a pas été créé."
       render :new
     end
   end
@@ -46,10 +46,11 @@ class GossipsController < ApplicationController
 
     if @gossip.update(title: params[:title], content: params[:content], user_id: @gossip.user_id, city_id: @gossip.city_id) # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
-      # flash[:success] = 'Le potin a bien été mis à jour.'
+      flash[:success] = "Le potin a bien été mis à jour."
       redirect_to gossips_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
+      flash.now[:danger] = "Le potin n'a pas été mis à jour."
       render :edit
     end
   end

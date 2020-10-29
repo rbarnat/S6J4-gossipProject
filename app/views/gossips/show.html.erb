@@ -1,6 +1,5 @@
 <% if @gossip_comment.errors.any? %>
   <div class="alert alert-danger" role="alert">
-    <p>Nous n'avons pas réussi à créer le commentaire pour la (ou les) raison(s) suivante(s) :</p>
     <ul>
       <% @gossip_comment.errors.full_messages.each do |message| %>
         <li><%= message %></li>

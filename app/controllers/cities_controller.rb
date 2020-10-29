@@ -22,10 +22,11 @@ class CitiesController < ApplicationController
 
     if @city.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
-      flash[:success] = 'Le potin a bien été créé.'
+      flash[:success] = "La ville a bien été créé."
       redirect_to root_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
+      flash.now[:danger] = "La ville n'a pas été créé."
       render :new
     end
   end

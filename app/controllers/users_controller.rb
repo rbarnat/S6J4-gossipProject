@@ -36,10 +36,12 @@ class UsersController < ApplicationController
 
     if @user.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
-      flash[:success] = 'Le user a bien été créé.'
+      flash[:success] = "Votre profil a bien été créé. Vous êtes désormais connecté."
+      log_in(@user)
       redirect_to root_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)
+      flash.now[:danger] = "Votre profil n'a pas été créé."
       render :new
     end
   end

@@ -7,6 +7,10 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  def log_out()
+    session.delete(:user_id)
+  end
+
   def logged_in?
     bool = true
     if session[:user_id]
