@@ -29,7 +29,7 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <p class="nav-link">
-                <a class="nav-link" href="<%= gossips_path %>">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<%= gossips_path %>">Accueil<span class="sr-only">(current)</span></a>
               </p>
             </li>
             <li class="nav-item">
@@ -39,16 +39,16 @@
             </li>
             <li class="nav-item">
               <p class="nav-link">
-                <a class="nav-link" href="<%= gossips_path %>">Utilisateurs</a>
+                <a class="nav-link" href="<%= users_path %>">Utilisateurs</a>
               </p>
             </li>
             <li class="nav-item">
               <p class="nav-link">
-                <a class="nav-link" href="<%= gossips_path %>">Villes</a>
+                <a class="nav-link" href="<%= cities_path %>">Villes</a>
               </p>
             </li>
           </ul>
-          <!--<form class="form-inline my-2 my-md-0">-->
+          <form class="form-inline my-2 my-md-0">
             
             <ul class="navbar-nav mr-auto">
               <% if logged_in? %>
@@ -58,6 +58,8 @@
                   </p>
                 </li>
               <% else %>
+                <a href="<%= new_user_path %>" class="nav-link" href="#">S'inscrire</a>
+                <a href="<%= new_session_path %>" class="nav-link" href="#">Se connecter</a>
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     S'inscrire / Se connecter
@@ -67,18 +69,11 @@
                     <a href="<%= new_session_path %>" class="dropdown-item" href="#">Se connecter</a>
                   </div>
                 </div>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">S'inscrire / Se connecter</a>
-                  <div class="dropdown-menu" aria-labelledby="dropdown04">
-                    <a href="<%= new_user_path %>" class="dropdown-item" href="#">S'inscrire</a>
-                    <a href="<%= new_session_path %>" class="dropdown-item" href="#">Se connecter</a>
-                  </div>
-                </li>
               <% end %>
               
             </ul>
             <!--<input class="form-control" type="text" placeholder="Search">-->
-          <!--</form>-->
+          </form>
         </div>
       </nav>
       <% flash.each do |key, value| %>
