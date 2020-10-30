@@ -46,7 +46,7 @@
         <div class="card mb-2">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-              <%= form_tag gossip_gossip_comment_path(@gossip.id), action:'create', method:'post' do %> <!-- post_gossip_comment_path(@gossip.id) -->
+              <%= form_tag gossip_gossip_comments_path(@gossip.id) do %> 
                 <%= text_field_tag 'content' %><%= submit_tag "+" %>
               <% end %>
             </div>
