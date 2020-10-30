@@ -1,2 +1,32 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1 class="text-center">Les utilisateurs</h1>
+
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @users.each do |user| %>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
+            <div class="card-body">
+              <small class="text-muted">#<%= user.id %></small>
+              <h3 class="card-title"><%= user.first_name + ' ' + user.last_name %></h5>
+              <h5 class="card-title">Email : <%= user.email %></h5>
+              <h5 class="card-title">Age : <%= user.age %></h5>
+              <p class="card-text"><%= user.description %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="<%= city_path(user.city.id) %>"><small  class="text">🏠<%= user.city.name %></small></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="text-left">
+      <a href="<%= root_path %>" class="btn my-2 btn-outline-secondary">Retour à l'acceuil</a>
+    </div>
+
+  </div>
+</div>

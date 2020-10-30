@@ -1,2 +1,27 @@
-<h1>Cities#index</h1>
-<p>Find me in app/views/cities/index.html.erb</p>
+<h1 class="text-center">Les villes</h1>
+
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @cities.each do |city| %>
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <!--<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">-->
+            <div class="card-body">
+              <small class="text-muted">#<%= city.id %></small>
+              <h3 class="card-title"><%= city.name %></h5>
+              <h5 class="card-title">Code postal : <%= city.zip_code %></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="text-left">
+      <a href="<%= root_path %>" class="btn my-2 btn-outline-secondary">Retour à l'acceuil</a>
+    </div>
+
+  </div>
+</div>
