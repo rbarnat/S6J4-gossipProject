@@ -12,7 +12,9 @@
             <%= label_tag 'Mot de passe : ' %>
             <%= password_field_tag 'password' %>
             <br />
-
+            <%= check_box_tag 'remember' %>
+            <%= label_tag 'Se souvenir de moi' %>
+            <br />
             <%= submit_tag "Se connecter" %>
         
           <% end %>

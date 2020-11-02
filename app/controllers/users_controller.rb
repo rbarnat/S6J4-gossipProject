@@ -38,6 +38,11 @@ class UsersController < ApplicationController
       # si ça marche, il redirige vers la page d'index du site
       flash[:success] = "Votre profil a bien été créé. Vous êtes désormais connecté."
       log_in(@user)
+      # on va cuisiner le cookie pour l'utilisateur
+      puts "params[:remember] #{params[:remember]}"
+      if (params[:remember] && params[:remember] == 1)
+        remember(@user)
+      end
       redirect_to root_path
     else
       # sinon, il render la view new (qui est celle sur laquelle on est déjà)

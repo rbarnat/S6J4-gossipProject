@@ -42,6 +42,9 @@
             <%= label_tag 'Ville : ' %>
             <%= text_field_tag 'city', @user.city.name %>
             <br />
+            <%= check_box_tag 'remember' %>
+            <%= label_tag 'Se souvenir de moi' %>
+            <br />
 
             <%= submit_tag "Créer ton profil" %>
         
